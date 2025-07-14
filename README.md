@@ -7,10 +7,10 @@ A macOS utility that watches folders for new image and PDF files and automatical
 
 ## Why Speedy Delivery?
 
-- **Save time**: No more manually opening files after downloads
-- **Stay focused**: Automatic preview keeps your workflow smooth
-- **Smart**: Prevents duplicate openings with intelligent throttling
-- **Reliable**: Comprehensive logging for debugging
+- **Learning project**: Built to understand file system monitoring and macOS automation
+- **Practical utility**: Automatically opens new images and PDFs in Preview
+- **Smart design**: Prevents duplicate openings with intelligent throttling
+- **Well-documented**: Comprehensive testing, documentation, and development tools
 
 ## Features
 
