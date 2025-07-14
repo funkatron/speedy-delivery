@@ -47,17 +47,21 @@ git clone https://github.com/funkatron/speedy-delivery.git
 cd speedy-delivery
 ```
 
-2. Make the script executable:
+2. Install using the Makefile (recommended):
 ```bash
-chmod +x speedy-delivery
+make install
 ```
 
-3. (Optional) Add to your PATH by creating a symlink:
+Or install manually:
 ```bash
+# Make the script executable
+chmod +x speedy-delivery
+
+# Add to your PATH
 sudo ln -s "$(pwd)/speedy-delivery" /usr/local/bin/speedy-delivery
 ```
 
-Or use the provided installation script:
+Or use the installation script:
 ```bash
 ./install.sh
 ```
@@ -73,7 +77,7 @@ Or use the provided installation script:
    ```bash
    git clone https://github.com/funkatron/speedy-delivery.git
    cd speedy-delivery
-   ./install.sh
+   make install
    ```
 
 3. **Start watching**:
