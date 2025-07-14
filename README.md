@@ -1,6 +1,16 @@
 # Speedy Delivery
 
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![macOS](https://img.shields.io/badge/platform-macOS-blue.svg)]()
+
 A macOS utility that watches folders for new image and PDF files and automatically opens them in Preview.
+
+## Why Speedy Delivery?
+
+- **Save time**: No more manually opening files after downloads
+- **Stay focused**: Automatic preview keeps your workflow smooth
+- **Smart**: Prevents duplicate openings with intelligent throttling
+- **Reliable**: Comprehensive logging for debugging
 
 ## Features
 
@@ -33,7 +43,7 @@ sudo port install fswatch
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/speedy-delivery.git
+git clone https://github.com/funkatron/speedy-delivery.git
 cd speedy-delivery
 ```
 
@@ -50,6 +60,40 @@ sudo ln -s "$(pwd)/speedy-delivery" /usr/local/bin/speedy-delivery
 Or use the provided installation script:
 ```bash
 ./install.sh
+```
+
+## Getting Started
+
+1. **Install dependencies**:
+   ```bash
+   brew install fswatch
+   ```
+
+2. **Clone and install**:
+   ```bash
+   git clone https://github.com/funkatron/speedy-delivery.git
+   cd speedy-delivery
+   ./install.sh
+   ```
+
+3. **Start watching**:
+   ```bash
+   speedy-delivery ~/Downloads
+   ```
+
+4. **Test it**: Drop an image or PDF into `~/Downloads` and watch it open automatically!
+
+## Development
+
+The project includes a comprehensive Makefile for common tasks:
+
+```bash
+make help          # Show all available commands
+make test-clean    # Run comprehensive tests
+make smoke-test    # Demonstrate functionality
+make lint          # Check script syntax
+make install       # Install to system
+make uninstall     # Remove from system
 ```
 
 ## Usage
@@ -96,11 +140,13 @@ File timestamps are cached in `~/.cache/speedy-delivery/` to implement the throt
 
 ## How It Works
 
-1. Uses `fswatch` to monitor specified directories for file system events
-2. Filters events to only process supported file types
-3. Implements a simple cache mechanism to prevent duplicate file openings
-4. Plays the macOS "Submarine" sound when opening files
-5. Logs all activities for debugging
+Speedy Delivery uses a simple but effective approach:
+
+1. **File Watching**: Uses `fswatch` to monitor directories for new files
+2. **Smart Filtering**: Only processes supported image and PDF files
+3. **Duplicate Prevention**: Caches file timestamps to avoid opening the same file twice
+4. **User Feedback**: Plays a sound and opens files in Preview
+5. **Logging**: Records all activity for troubleshooting
 
 ## Troubleshooting
 
@@ -137,6 +183,16 @@ Quick start:
 5. Commit your changes: `git commit -am 'feat: add feature description'`
 6. Push to the branch: `git push origin feature-name`
 7. Submit a pull request
+
+## Quick Demo
+
+See Speedy Delivery in action:
+```bash
+# Clone and test
+git clone https://github.com/funkatron/speedy-delivery.git
+cd speedy-delivery
+make smoke-test
+```
 
 ## License
 
