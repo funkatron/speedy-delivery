@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# speedy-delivery: Watches folders and opens new image/PDF files in Preview
+
+CACHE_TTL=10  # seconds
+CACHE_DIR="$HOME/.cache/speedy-delivery"
+LOG_FILE="$HOME/Library/Logs/speedy-delivery.log"
+
+show_help() {
+  cat <<EOF
+Usage: speedy-delivery [DIRECTORY...]
+
+Watches one or more folders for new files and opens them in Preview.
+
+Supported file types:
+  - Images: .jpg, .jpeg, .png, .webp, .gif, .heic
+  - Documents: .pdf
+
+If no directory is specified, defaults to: ~/Desktop/watch_images
+
+Options:
+  --help        Show this help message
+
+Throttle:
+  Files opened in the past $CACHE_TTL seconds will be ignored to avoid duplicate launches.
+
+Sound:
+  The macOS system sound "Submarine" is played when a file is opened.
+
+Log:
+  Events are logged to: $LOG_FILE
+EOF
+}
+
+# Handle help
+if [[ "$1" == "--help" ]]; then
+  show_help
+  exit 0
+fi
+
+# Directories to watch
+WATCH_DIRS=("$@")
+[[ ${#WATCH_DIRS[@]} -eq 0 ]] && WATCH_DIRS=("$HOME/Desktop/watch_images")
+
+# Setup
+mkdir -p "$CACHE_DIR"
+mkdir -p "$(dirname "$LOG_FILE")"
+echo "[`date`] Starting speedy-delivery. Watching: ${WATCH_DIRS[*]}" >> "$LOG_FILE"
+
+# Main watcher loop
+fswatch -0 -r \
+  -e ".*" \
+  -i "\\.(jpg|jpeg|png|webp|gif|heic|pdf)$" \
+  "${WATCH_DIRS[@]}" \
+  | xargs -0 -n1 -I{} bash -c '
+    f="$1"
+    now=$(date +%s)
+    cache_dir="'"$CACHE_DIR"'"
+    stamp_file="$cache_dir/$(echo "$f" | md5sum | cut -d\" \" -f1)"
+
+    if [ -f "$f" ]; then
+      if [ -f "$stamp_file" ]; then
+        last_seen=$(cat "$stamp_file")
+        if [ $((now - last_seen)) -lt '"$CACHE_TTL"' ]; then
+          exit 0
+        fi
+      fi
+
+      echo "$now" > "$stamp_file"
+      echo "[`date`] Opening $f" >> "'"$LOG_FILE"'"
+      afplay /System/Library/Sounds/Submarine.aiff &
+      open "$f"
+    fi
+  ' _ {}

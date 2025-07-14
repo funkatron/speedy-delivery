@@ -1,0 +1,42 @@
+# Bash Scripting Standards for Speedy Delivery
+
+## Script Structure
+- Always use `#!/bin/bash` shebang
+- Use `set -e` for error handling (or `set +e` when testing)
+- Quote all variables: `"$variable"`
+- Use meaningful variable names
+- Add comments for complex logic
+
+## Error Handling
+- Use `set -e` to exit on errors
+- Use `|| true` to ignore expected failures
+- Use `2>/dev/null` to suppress error output when appropriate
+- Implement cleanup functions with `trap cleanup EXIT`
+
+## Testing Patterns
+- Create isolated test environments in `/tmp/`
+- Use unique test directory names with `$$` (process ID)
+- Implement cleanup functions for test artifacts
+- Test both success and failure scenarios
+
+## File Operations
+- Check file existence before operations: `[[ -f "$file" ]]`
+- Check directory existence: `[[ -d "$dir" ]]`
+- Use `mkdir -p` for safe directory creation
+- Use `rm -rf` with caution, always check paths
+
+## Process Management
+- Use `&` for background processes
+- Store process IDs: `PROCESS_ID=$!`
+- Clean up processes: `kill "$PROCESS_ID" 2>/dev/null || true`
+- Use `pkill -f "pattern"` for process cleanup
+
+## Logging and Output
+- Use color codes for different message types
+- Implement structured logging with timestamps
+- Provide clear success/failure indicators
+- Use descriptive echo statements for user feedback
+description:
+globs:
+alwaysApply: false
+---

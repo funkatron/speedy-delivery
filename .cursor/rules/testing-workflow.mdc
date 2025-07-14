@@ -1,0 +1,41 @@
+# Testing Workflow for Speedy Delivery
+
+## Test Types
+1. **Clean Test** (`test/clean-test.sh`) - Comprehensive installation testing in isolated environment
+2. **Smoke Test** (`test/smoke-test.sh`) - Functional demonstration with real file watching
+3. **Basic Tests** (`test/test_speedy_delivery.sh`) - Core functionality verification
+
+## Testing Patterns
+- Create temporary directories with unique names: `/tmp/speedy-test-$$`
+- Implement cleanup functions with `trap cleanup EXIT`
+- Use color-coded output for test results
+- Test both success and failure scenarios
+- Verify file creation, process management, and cleanup
+
+## Makefile Targets
+- `make test-clean` - Run comprehensive installation tests
+- `make smoke-test` - Demonstrate functionality with real file watching
+- `make lint` - Check script syntax
+- `make clean` - Remove test artifacts and cache
+- `make help` - Show available targets
+
+## Test Environment Setup
+- Copy project files to isolated directory
+- Make scripts executable
+- Set up cleanup traps
+- Use `set +e` for testing to handle expected failures
+- Implement proper error handling and reporting
+
+## Validation Points
+- Script syntax validation
+- File presence checks
+- Help functionality testing
+- Makefile target verification
+- Installation script logic testing
+- Process management testing
+- Log file creation verification
+- Cache directory creation checks
+description:
+globs:
+alwaysApply: false
+---

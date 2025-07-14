@@ -1,0 +1,48 @@
+# Documentation Standards for Speedy Delivery
+
+## README Structure
+- Clear project description and purpose
+- Installation instructions with prerequisites
+- Usage examples with common scenarios
+- Configuration options and customization
+- Troubleshooting section with common issues
+- Contributing guidelines reference
+
+## Markdown Formatting
+- Use headers for clear section organization
+- Include code blocks with language specification
+- Use emojis for visual appeal and quick scanning
+- Implement proper link formatting
+- Include badges for project status
+
+## Installation Documentation
+- Prerequisites clearly listed (macOS, fswatch)
+- Step-by-step installation process
+- Alternative installation methods
+- Verification steps after installation
+- Uninstallation instructions
+
+## Usage Documentation
+- Basic usage examples
+- Advanced usage scenarios
+- Command-line options and flags
+- Configuration file locations
+- Log file locations and debugging
+
+## Contributing Guidelines
+- Development setup instructions
+- Code style guidelines
+- Testing requirements
+- Pull request process
+- Issue reporting format
+
+## Changelog Format
+- Follow Keep a Changelog format
+- Use semantic versioning
+- Categorize changes (Added, Changed, Fixed, etc.)
+- Include dates for releases
+- Link to relevant issues/PRs
+description:
+globs:
+alwaysApply: false
+---

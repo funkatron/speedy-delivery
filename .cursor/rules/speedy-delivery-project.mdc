@@ -1,0 +1,43 @@
+# Speedy Delivery Project Guide
+
+## Project Overview
+Speedy Delivery is a macOS utility that watches folders for new image and PDF files and automatically opens them in Preview.
+
+## Core Files
+- [speedy-delivery](mdc:speedy-delivery) - Main script with file watching functionality
+- [install.sh](mdc:install.sh) - Installation script for system-wide installation
+- [uninstall.sh](mdc:uninstall.sh) - Clean removal script
+- [README.md](mdc:README.md) - Comprehensive documentation
+- [LICENSE](mdc:LICENSE) - MIT License
+- [Makefile](mdc:Makefile) - Development tasks and shortcuts
+
+## Testing Structure
+- [test/clean-test.sh](mdc:test/clean-test.sh) - Comprehensive installation testing
+- [test/smoke-test.sh](mdc:test/smoke-test.sh) - Functional demonstration test
+- [test/test_speedy_delivery.sh](mdc:test/test_speedy_delivery.sh) - Basic functionality tests
+
+## Development Workflow
+1. **Testing**: Use `make test-clean` for comprehensive testing
+2. **Smoke Test**: Use `make smoke-test` to demonstrate functionality
+3. **Linting**: Use `make lint` to check script syntax
+4. **Installation**: Use `./install.sh` for system installation
+5. **Cleanup**: Use `make clean` to remove test artifacts
+
+## Key Features
+- File system monitoring with fswatch
+- Support for images (.jpg, .jpeg, .png, .webp, .gif, .heic) and PDFs
+- Throttling mechanism to prevent duplicate openings
+- Audio feedback using macOS system sounds
+- Comprehensive logging system
+- Cache mechanism for file timestamps
+
+## Project Standards
+- Use explicit over implicit in all code
+- Follow SOLID principles where practical
+- Maintain clear documentation
+- Test before committing changes
+- Keep linting/docs changes separate from logic changes
+description:
+globs:
+alwaysApply: false
+---
